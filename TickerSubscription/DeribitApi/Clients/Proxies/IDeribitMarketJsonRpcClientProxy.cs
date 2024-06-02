@@ -26,5 +26,5 @@ public partial interface IDeribitJsonRpcClientProxy
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>Collection of instrument data.</returns>
     [JsonRpcMethod("public/get_instruments")]
-    Task<GetInstrumentResponse[]> GetInstrumentsPerCurrency(string currency, CancellationToken cancellationToken);
+    Task<GetInstrumentResponse[]> GetInstruments(string currency, string kind, bool expired, CancellationToken cancellationToken);
 }

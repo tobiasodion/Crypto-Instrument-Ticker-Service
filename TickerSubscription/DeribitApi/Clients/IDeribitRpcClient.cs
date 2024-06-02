@@ -21,12 +21,14 @@ public interface IDeribitRpcClient : IRpcClient, IConnectableClient, IDisposable
     Task<GetCurrencyResponse[]> GetCurrencies(CancellationToken cancellationToken);
 
     /// <summary>
-    /// Gets all instruments for a specific currency.
+    /// Gets all instruments for a specific or all currency .
     /// </summary>
-    /// <param name="currencyId">The currency's ID.</param>
+    /// <param name="currency">The currency symbol or "any" for all</param>
+    /// <param name="kind">Instrument kind, if not provided instruments of all kinds are considered</param>
+    /// <param name="expired">Set to true to show recently expired instruments instead of active ones.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The collection of relevant instruments.</returns>
-    Task<GetInstrumentResponse[]> GetInstrumentsForCurrency(string currencyId, CancellationToken cancellationToken);
+    Task<GetInstrumentResponse[]> GetInstruments(string currency, string kind, bool expired, CancellationToken cancellationToken);
 
     /// <summary>
     /// Subscribes to a collection of requests.

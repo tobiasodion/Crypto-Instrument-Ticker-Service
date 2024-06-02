@@ -58,10 +58,10 @@ public class DeribitRpcClient : IDeribitRpcClient
         return _dynamicClientProxy.GetCurrencies(cancellationToken);
     }
 
-    public Task<GetInstrumentResponse[]> GetInstrumentsForCurrency(string currencyId, CancellationToken cancellationToken)
+    public Task<GetInstrumentResponse[]> GetInstruments(string currency, string kind, bool expired, CancellationToken cancellationToken)
     {
         VerifyIsAttached(_dynamicClientProxy);
-        return _dynamicClientProxy.GetInstrumentsPerCurrency(currencyId, cancellationToken);
+        return _dynamicClientProxy.GetInstruments(currency, kind, expired, cancellationToken);
     }
 
     public async Task Subscribe(SubscriptionRequest[] requests, Func<JToken, Task> onNotificationReceived, CancellationToken cancellationToken)

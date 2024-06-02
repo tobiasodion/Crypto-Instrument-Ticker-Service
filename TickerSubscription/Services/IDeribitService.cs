@@ -25,12 +25,12 @@ public interface IDeribitService
     Task<IReadOnlyList<Currency>> GetCurrencies(CancellationToken cancellationToken);
 
     /// <summary>
-    /// Gets all instruments for a given currency.
+    /// Gets all instruments for a given currency or all currencies.
     /// </summary>
-    /// <param name="currency">The currency.</param>
+    /// <param name="getInstrumentsRequest">The get instrument request</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The collection of instruments.</returns>
-    Task<IReadOnlyList<Instrument>> GetInstrumentsForCurrency(Currency currency, CancellationToken cancellationToken);
+    Task<IReadOnlyList<Instrument>> GetInstruments(GetInstrumentsRequest getInstrumentsRequest, CancellationToken cancellationToken);
 
     /// <summary>
     /// Subscribes to a collection of requests.

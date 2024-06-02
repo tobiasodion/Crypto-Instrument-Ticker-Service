@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TickerSubscription.DeribitApi.Models;
 using TickerSubscription.DeribitApi.Services;
 using TickerSubscription.Dto;
+using TickerSubscription.Enums;
 using TickerSubscription.Mappers;
 using TickerSubscription.NotificationHandlers;
 
@@ -31,10 +32,7 @@ public class SubscriptionWorkerService : ISubscriptionWorkerService
     {
         await _deribitService.Connect(cancellationToken);
         var instruments = await GetInstruments(cancellationToken);
-
-        //For testing purposes, we will subscribe to a subset(5) of available instruments
-        //In the actual implementation, a flow to select specific instruments to subscribe to will be implemented.
-        await SubscribeToInstruments(instruments.Take(5), cancellationToken);
+        await SubscribeToInstruments(instruments.ToArray(), cancellationToken);
     }
 
     public async Task StopWorker(CancellationToken cancellationToken)
@@ -44,10 +42,9 @@ public class SubscriptionWorkerService : ISubscriptionWorkerService
 
     private async Task<IEnumerable<Instrument>> GetInstruments(CancellationToken cancellationToken)
     {
-        var currencies = await _deribitService.GetCurrencies(cancellationToken);
-        var getInstrumentTasks = currencies.Select(currency => _deribitService.GetInstrumentsForCurrency(currency, cancellationToken));
-        var instrumentsPerCurrencies = await Task.WhenAll(getInstrumentTasks);
-        return instrumentsPerCurrencies.SelectMany(instruments => instruments);
+        var getInstrumentRequest = new GetInstrumentsRequest(CurrencyType.ANY, InstrumentKind.FUTURE);
+        var instruments = await _deribitService.GetInstruments(getInstrumentRequest, cancellationToken);
+        return instruments.Select(instruments => instruments);
     }
 
     private async Task SubscribeToInstruments(IEnumerable<Instrument> instruments, CancellationToken cancellationToken)

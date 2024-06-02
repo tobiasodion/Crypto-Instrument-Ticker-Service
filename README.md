@@ -10,8 +10,7 @@ The solution includes the following:
 
 - SubscriptionWorker
     - Creates a WebSocket connection to the Deribit RPC-Json service
-    - Retrieves all the currencies from the service
-    - Retrieves all instruments for currencies retrieved
+    - Retrieves all future instruments for all currencies
     - Subscribes to the instrument ticker for the instruments retrieved
 - NotificationHandler - Persists instrument ticker notifications to the database
 - RetrievalWorker

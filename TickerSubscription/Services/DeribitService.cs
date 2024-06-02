@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TickerSubscription.DeribitApi.Clients;
 using TickerSubscription.DeribitApi.Models;
 using TickerSubscription.Dto;
+using TickerSubscription.Extensions;
 using TickerSubscription.NotificationHandlers;
 
 namespace TickerSubscription.DeribitApi.Services;
@@ -35,16 +36,11 @@ public class DeribitService : IDeribitService
             .ToList();
     }
 
-    public async Task<IReadOnlyList<Instrument>> GetInstrumentsForCurrency(Currency currency, CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<Instrument>> GetInstruments(GetInstrumentsRequest getInstrumentsRequest, CancellationToken cancellationToken)
     {
-        if (currency is null)
-        {
-            throw new ArgumentNullException(nameof(currency));
-        }
+        var instrumentDataModels = await _deribitRpcClient.GetInstruments(EnumExtensions.GetStringValue(getInstrumentsRequest.Currency), EnumExtensions.GetStringValue(getInstrumentsRequest.Kind), getInstrumentsRequest.Expired, cancellationToken);
 
-        var inventoryDataModels = await _deribitRpcClient.GetInstrumentsForCurrency(currency.Id, cancellationToken);
-
-        return inventoryDataModels
+        return instrumentDataModels
             .Select(model => new Instrument(model.instrument_name))
             .ToList();
     }
