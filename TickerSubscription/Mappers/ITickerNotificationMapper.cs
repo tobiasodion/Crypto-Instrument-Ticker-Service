@@ -6,7 +6,7 @@ namespace TickerSubscription.Mappers;
 /// Maps subscription notifications to an expected model type.
 /// </summary>
 /// <typeparam name="TNotification">The notification type.</typeparam>
-public interface IInstrumentSubscriptionNotificationMapper<out TNotification>
+public interface ITickerNotificationMapper<out TNotification>
 {
     /// <summary>
     /// Creates a subscription notification model from the received JSON token.

@@ -5,9 +5,9 @@ using TickerSubscription.Models;
 
 namespace TickerSubscription.Mappers;
 
-public class InstrumentSubscriptionNotificationMapper : IInstrumentSubscriptionNotificationMapper<InstrumentSubscriptionNotificationSnapshot>
+public class TickerNotificationMapper : ITickerNotificationMapper<TickerNotification>
 {
-    public InstrumentSubscriptionNotificationSnapshot FromJson(JToken response)
+    public TickerNotification FromJson(JToken response)
     {
         if (response is null)
         {
@@ -27,6 +27,6 @@ public class InstrumentSubscriptionNotificationMapper : IInstrumentSubscriptionN
         }
         var timestamp = DateTimeOffset.FromUnixTimeMilliseconds(unixTimeInMilliseconds.Value).UtcDateTime;
 
-        return new InstrumentSubscriptionNotificationSnapshot(name, timestamp, response.ToString());
+        return new TickerNotification(name, timestamp, response.ToString());
     }
 }

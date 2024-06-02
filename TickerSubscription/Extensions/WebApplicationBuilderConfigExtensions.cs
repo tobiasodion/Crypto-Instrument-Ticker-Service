@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using TickerSubscription.Settings;
-using TickerSubscription.Settings;
 
 namespace TickerSubscription.Extensions;
 
@@ -19,6 +18,7 @@ public static class WebApplicationBuilderConfigurationExtensions
         builder.AddSettingsInstance<ConnectionCheckSettings>(nameof(ConnectionCheckSettings));
         builder.AddSettingsInstance<SubscriptionSettings>(nameof(SubscriptionSettings));
         builder.AddSettingsInstance<WebSocketSettings>(nameof(WebSocketSettings));
+        builder.AddSettingsInstance<TickerStoreSettings>(nameof(TickerStoreSettings));
     }
 
     private static void AddSettingsInstance<TSettings>(this WebApplicationBuilder builder, string settingsName) where TSettings : class
