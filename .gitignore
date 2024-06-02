@@ -9,6 +9,9 @@
 # dotenv files
 .env
 
+# production settings files
+*.appsettings.json
+
 # User-specific files
 *.rsuser
 *.suo
