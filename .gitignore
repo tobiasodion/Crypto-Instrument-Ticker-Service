@@ -10,7 +10,7 @@
 .env
 
 # production settings files
-*.appsettings.json
+*appsettings.json
 
 # User-specific files
 *.rsuser
