@@ -9,14 +9,14 @@ Using C# .NET, write a process that will subscribe and persist in real time to D
 The solution includes the following:
 
 - SubscriptionWorker
-    Creates a websocket connection to the Deribit RPC-Json service
-    Retrieves all the currencies from the service
-    Retrieves all instruments for currencies retrieved
-    Subscribes to the instrument ticker for the instruments retrieved
+    - Creates a WebSocket connection to the Deribit RPC-Json service
+    - Retrieves all the currencies from the service
+    - Retrieves all instruments for currencies retrieved
+    - Subscribes to the instrument ticker for the instruments retrieved
 - NotificationHandler - Persists instrument ticker notifications to the database
 - RetrievalWorker
-    Retrieves persisted instruments from the database
-    Logs the data to the console
+    - Retrieves persisted instruments from the database
+    - Logs the retrieved data to the console
 
 ## To Run - With Docker-Compose
 
@@ -27,22 +27,22 @@ The solution includes the following:
 ### Steps
 
 - Copy the .env.template file to a .env file by executing `cp .env.template .env`
-- **Not Required in development:** Update the value of the `MONGO_ROOT_PASSWORD` variable(please follow the mongodb password requirements)
+- **Not Required in development:** Update the value of the `MONGO_ROOT_PASSWORD` variable(please follow the MongoDB password requirements)
 - Start the application by executing `docker-compose up --build`
 - Monitor the console for the output of the application
 - Stop the docker run by executing `ctrl + C`
 
 ## To Run - With Makefile
 
-**NB**: Use this method if you already running mongodb instance.
+**NB**: Use this method if you already have a running MongoDB instance.
 
 ### Requirements
 
-- Configurations of the running MongoDb instance
+- Configurations of the running MongoDB instance
 
 ### Steps
 
-- Update the `TickerStoreSettings` section in the appSettings.Development.json with the configuration of the running MongoDb instance:
+- Update the `TickerStoreSettings` section in the appSettings.Development.json with the configurations of the running MongoDB instance:
 
 ```
 {
@@ -52,6 +52,6 @@ The solution includes the following:
 }
 ```
 
-**NB:** If the running MongoDb instance does not have auth credentials, update the connection string value in this format `mongodb://<server>:<port>`
+**NB:** If the running MongoDB instance does require auth credentials, update the connection string value in this format: `mongodb://<server>:<port>`
 
 - Start the API by executing the command `make`
