@@ -19,6 +19,7 @@ public static class WebApplicationBuilderConfigurationExtensions
         builder.AddSettingsInstance<SubscriptionSettings>(nameof(SubscriptionSettings));
         builder.AddSettingsInstance<WebSocketSettings>(nameof(WebSocketSettings));
         builder.AddSettingsInstance<TickerStoreSettings>(nameof(TickerStoreSettings));
+        builder.AddSettingsInstance<RetrievalWorkerSettings>(nameof(RetrievalWorkerSettings));
     }
 
     private static void AddSettingsInstance<TSettings>(this WebApplicationBuilder builder, string settingsName) where TSettings : class

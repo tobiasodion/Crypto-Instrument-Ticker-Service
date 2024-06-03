@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using TickerSubscription.Models;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace TickerSubscription.Repo;
 
@@ -19,7 +20,6 @@ public class TickerNotificationRepo : ITickerNotificationRepo
         try
         {
             await _repository.AddAsync(tickerNotification);
-            Console.WriteLine($"Ticker notification for {tickerNotification.Name} saved successfully.");
         }
         catch (MongoWriteException ex)
         {
@@ -32,6 +32,33 @@ public class TickerNotificationRepo : ITickerNotificationRepo
         catch (Exception ex)
         {
             Console.WriteLine($"Exception: {ex.Message}");
+        }
+    }
+
+    public async Task<IReadOnlyCollection<TickerNotification>?> GetAllNotificationsForPeriod(DateTime startTimestamp, DateTime endTimestamp)
+    {
+        try
+        {
+            if (startTimestamp < endTimestamp)
+            {
+                return await _repository.GetAllForPeriodAsync(startTimestamp, endTimestamp);
+            }
+            throw new ArgumentException("The start timestamp must be greater than or equal to the end timestamp.");
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"ArgumentException: {ex.Message}");
+            return null;
+        }
+        catch (MongoException ex)
+        {
+            Console.WriteLine($"MongoException: {ex.Message}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception: {ex.Message}");
+            return null;
         }
     }
 }

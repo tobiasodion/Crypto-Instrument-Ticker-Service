@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -18,5 +20,13 @@ public class Repository<T> : IRepository<T> where T : class
     public async Task AddAsync(T entity)
     {
         await _collection.InsertOneAsync(entity);
+    }
+
+    public async Task<IReadOnlyCollection<T>> GetAllForPeriodAsync(DateTime startTimestamp, DateTime endTimestamp)
+    {
+        var filterBuilder = Builders<T>.Filter;
+        var filter = filterBuilder.Gte("timestamp", startTimestamp) & filterBuilder.Lte("timestamp", endTimestamp);
+
+        return await _collection.Find(filter).ToListAsync();
     }
 }

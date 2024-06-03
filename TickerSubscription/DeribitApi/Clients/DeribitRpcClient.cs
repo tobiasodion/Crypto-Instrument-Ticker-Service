@@ -70,7 +70,7 @@ public class DeribitRpcClient : IDeribitRpcClient
         _dynamicClientProxy.subscription += (_, token) => onNotificationReceived(token);
 
         var channels = requests.Select(r => r.ChannelName).ToArray();
-        Console.WriteLine($"Subscribing to the following {channels.Length} channels:\n {string.Join(",\n", channels)}");
+        Console.WriteLine($"Subscribing to the following {channels.Length} channels:\n {string.Join("\n", channels)}");
         await _dynamicClientProxy.Subscribe(channels, cancellationToken);
         Console.WriteLine($"Subscription Successful!");
     }

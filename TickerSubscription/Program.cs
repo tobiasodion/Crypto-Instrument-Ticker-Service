@@ -16,8 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddConfigurationSettings();
 builder.Services.AddHostedService<SubscriptionWorker>();
+builder.Services.AddHostedService<RetrievalWorker>();
 
 builder.Services.AddSingleton<ISubscriptionWorkerService, SubscriptionWorkerService>();
+builder.Services.AddSingleton<IRetrievalWorkerService, RetrievalWorkerService>();
 builder.Services.AddSingleton<INotificationHandler, TickerNotificationHandler>();
 
 builder.Services.AddSingleton<IRpcToJsonRpcConnectionHandler, RpcToJsonRpcConnectionHandler>();
