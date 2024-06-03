@@ -10,7 +10,7 @@ TEST_PROJECT_FILE = $(TEST_PROJECT_DIR)/TickerSubscription.Tests.csproj
 TEST_BUILD_CMD = dotnet build $(TEST_PROJECT_FILE)
 TEST_RUN_CMD = dotnet test $(TEST_PROJECT_FILE)
 
-all: build test run
+all: build build-test test run
 
 build:
 	@echo "Building the project..."
@@ -36,4 +36,4 @@ restore:
 	@echo "Restoring dependencies..."
 	dotnet restore $(PROJECT_FILE)
 
-.PHONY: all build test run clean restore
+.PHONY: all build build-test test run clean restore
