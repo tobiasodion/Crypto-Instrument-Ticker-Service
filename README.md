@@ -14,8 +14,21 @@ The solution includes the following:
     - Subscribes to the instrument ticker for the instruments retrieved
 - NotificationHandler - Persists instrument ticker notifications to the database
 - RetrievalWorker
-    - Retrieves persisted instruments from the database
+    - Retrieves persisted instruments from the database based on the interval specifified in `RetrievalWorkerSettings` section of appsettings.
+    ```
+    {
+    "RetrievalIntervalInSec": 30,
+    "TimeSpanIntervalInSec": 40
+    }
+    ```
+    - where:
+        - `RetrievalIntervalInSec` - Interval between successive retrievals 
+        - `TimeSpanIntervalInSec` - Timespan of notification data to be retrieved.
     - Logs the retrieved data to the console
+
+## To Test 
+
+Run the unit tests by executing `make test`
 
 ## To Run - With Docker-Compose
 
