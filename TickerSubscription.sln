@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickerSubscription", "TickerSubscription\TickerSubscription.csproj", "{B75B6187-389D-4A1B-81F0-671F0488F513}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickerSubscription.Tests", "TickerSubscription.Tests\TickerSubscription.Tests.csproj", "{B97BD80D-0C43-44AA-B076-D739B8AC8294}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B75B6187-389D-4A1B-81F0-671F0488F513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B75B6187-389D-4A1B-81F0-671F0488F513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B75B6187-389D-4A1B-81F0-671F0488F513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B97BD80D-0C43-44AA-B076-D739B8AC8294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97BD80D-0C43-44AA-B076-D739B8AC8294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97BD80D-0C43-44AA-B076-D739B8AC8294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97BD80D-0C43-44AA-B076-D739B8AC8294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

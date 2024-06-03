@@ -6,7 +6,7 @@ namespace TickerSubscription.Dto;
 public class GetCurrencyResponse
 {
     /// <summary>
-    /// The curry from Deribit.
+    /// The currency from Deribit.
     /// </summary>
     public string currency { get; set; }
 }
