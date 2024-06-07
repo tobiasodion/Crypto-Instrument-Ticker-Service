@@ -1,12 +1,6 @@
-# Xbto Coding Assignment
+# Overview
 
-## Brief
-
-Using C# .NET, write a process that will subscribe and persist in real time to Deribit future instrument ticker. If you have the time, write a second process that will be able to retrieve these persisted data. This second process should be able to run side by side with the first one. Deribit API documentation : https://docs.deribit.com/#ticker-instrument_name-interval
-
-## Solution
-
-The solution includes the following:
+Worker-based Service to subscribe, retrieve, persist, and display crypto instrument ticker from Deribit(crypto exchange platform). The solution includes the following:
 
 - SubscriptionWorker
     - Creates a WebSocket connection to the Deribit RPC-Json service
@@ -67,3 +61,5 @@ Run the unit tests by executing `make test`
 **NB:** If the running MongoDB instance does require auth credentials, update the connection string value in this format: `mongodb://<server>:<port>`
 
 - Start the API by executing the command `make`
+
+*Reference: https://github.com/jonathan-ray/TickerSubscriptionDemo*
